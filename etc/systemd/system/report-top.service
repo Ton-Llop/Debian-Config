@@ -1,0 +1,21 @@
+[Unit]
+Description=GSX Admin - produce daily top resource consumers report
+Documentation=man:systemd.timer(5)
+Wants=report-top.timer
+After=network.target
+
+[Service]
+Type=oneshot
+# Run script 
+ExecStart=/home/gsx/gsx-admin/opt/10-report_top_consumers.sh
+# If you want the job to run as a non-root user (e.g., gsx), uncomment the next line:
+# User=gsx
+# If your script requires environment variables from a file in the repo, you can add:
+# EnvironmentFile=/home/gsx/gsx-admin/etc/report_top.env
+
+# Keep the service's logs in journal (useful for debugging)
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Run GSX backup daily
+
+[Timer]
+# Daily at 03:30 (server local time)
+OnCalendar=*-*-* 03:30:00
+Persistent=true
+RandomizedDelaySec=10m
+Unit=gsx-backup.service
+
+[Install]
+WantedBy=timers.target

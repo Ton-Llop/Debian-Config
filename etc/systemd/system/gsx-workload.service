@@ -1,0 +1,49 @@
+[Unit]
+Description=GSX Week3 Workload (signals + cgroups resource limits)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+# Run as non-root (safer). User must be in gsx-admin group.
+User=gsx
+Group=gsx-admin
+
+WorkingDirectory=/srv/gsx-admin
+
+# Resource accounting (needed for systemctl to show usage)
+CPUAccounting=yes
+MemoryAccounting=yes
+TasksAccounting=yes
+
+# Resource limits (cgroups)
+CPUQuota=25%
+MemoryMax=200M
+TasksMax=200
+
+# Graceful shutdown: let the manager handle workers (SIGTERM)
+KillSignal=SIGTERM
+TimeoutStopSec=15
+KillMode=mixed
+
+# Basic hardening (keep it compatible with /srv/gsx-admin)
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/srv/gsx-admin
+
+# Dedicated runtime dir for PID file
+RuntimeDirectory=gsx-workload
+RuntimeDirectoryMode=0750
+
+ExecStart=/usr/bin/bash /srv/gsx-admin/opt/11-workload-signals.sh   --workers 6   --nice 15   --output /dev/null   --config /srv/gsx-admin/etc/gsx-admin/workload.conf   --pidfile /run/gsx-workload/gsx-workload-manager.pid   --log /srv/gsx-admin/logs/workload/workload-manager.log
+
+Restart=on-failure
+RestartSec=2
+
+SyslogIdentifier=gsx-workload
+
+[Install]
+WantedBy=multi-user.target

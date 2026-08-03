@@ -1,0 +1,11 @@
+[Unit]
+Description=Run GSX Week 5 backup daily
+
+[Timer]
+OnCalendar=*-*-* 02:30:00
+Persistent=true
+RandomizedDelaySec=15m
+Unit=gsx-backup-tot.service
+
+[Install]
+WantedBy=timers.target

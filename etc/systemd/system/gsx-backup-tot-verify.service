@@ -1,0 +1,18 @@
+[Unit]
+Description=GSX Week 5 backup verification and restore test
+Documentation=/srv/gsx-admin/docs/Week5/BackupVerification.md
+RequiresMountsFor=/srv/week5-data /srv/gsx-admin
+After=gsx-backup-tot.service
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=-/etc/gsx-admin/backup-week5.env
+ExecStart=/usr/bin/bash /srv/gsx-admin/opt/19-verify-backups.sh
+SyslogIdentifier=gsx-backup-tot-verify
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

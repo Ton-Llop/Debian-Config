@@ -1,0 +1,58 @@
+### --- Linux / editor junk ---
+*~
+.*.swp
+.*.swo
+*.tmp
+*.bak
+
+### --- macOS / Windows junk (if you edit on host) ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+### --- IDEs (optional) ---
+.vscode/
+.idea/
+
+### --- Logs / runtime state ---
+*.log
+*.pid
+*.out
+logs/
+state/
+
+### --- Archives / backups produced by your scripts ---
+backups/
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.gpg
+*.enc
+
+### --- Secrets / credentials (DO NOT COMMIT) ---
+.env
+.env.*
+*.secret
+secrets/
+**/secrets/
+
+# SSH keys and similar
+id_*
+*.pem
+*.key
+*.p12
+*.pfx
+authorized_keys
+known_hosts
+
+### --- VirtualBox / VM artifacts (avoid accidents) ---
+*.iso
+*.vdi
+*.vmdk
+*.vbox
+*.vbox-prev
+*.ova
+*.ovf
+Snapshots/

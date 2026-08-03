@@ -1,0 +1,11 @@
+/srv/gsx-admin/logs/top-report*.log /srv/gsx-admin/logs/backups*.log {
+  su root gsx-admin
+  weekly
+  rotate 8
+  missingok
+  notifempty
+  compress
+  delaycompress
+  copytruncate
+  create 0664 root gsx-admin
+}

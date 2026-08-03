@@ -1,0 +1,15 @@
+[Unit]
+Description=Run GSX Admin top-report daily at 03:00
+
+[Timer]
+# Daily at 03:00
+OnCalendar=*-*-* 03:00:00
+# If machine was off at 03:00, run the missed job at boot
+Persistent=true
+# Start the timer shortly after boot if enabled
+OnBootSec=5min
+# Accuracy (optional): how precise the timer should be
+AccuracySec=1m
+
+[Install]
+WantedBy=timers.target

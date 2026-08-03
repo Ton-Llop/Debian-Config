@@ -1,0 +1,21 @@
+[Unit]
+Description=GSX Week 5 snapshot backup
+Documentation=/srv/gsx-admin/docs/Week5/AutomatedBackup.md
+Wants=network-online.target
+After=network-online.target
+RequiresMountsFor=/srv/week5-data /srv/gsx-admin
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+EnvironmentFile=-/etc/gsx-admin/backup-tot.env
+ExecStart=/usr/bin/bash /srv/gsx-admin/opt/18-run-backup.sh
+SyslogIdentifier=gsx-backup-tot
+Nice=10
+IOSchedulingClass=best-effort
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

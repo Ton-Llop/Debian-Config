@@ -1,0 +1,11 @@
+[Unit]
+Description=Run GSX Week 5 backup verification weekly
+
+[Timer]
+OnCalendar=Sun *-*-* 04:15:00
+Persistent=true
+RandomizedDelaySec=20m
+Unit=gsx-backup-tot-verify.service
+
+[Install]
+WantedBy=timers.target

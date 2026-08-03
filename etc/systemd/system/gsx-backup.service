@@ -1,0 +1,30 @@
+[Unit]
+Description=GSX Backup (Week 1 backup script)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+
+# Optional: encryption/passphrase settings (NOT tracked in Git)
+#   - create /etc/gsx-admin/backup.env from the example in the repo if you want encrypted backups
+EnvironmentFile=-/etc/gsx-admin/backup.env
+
+# Defaults (can be overridden by EnvironmentFile)
+Environment=ADMIN_ROOT=/srv/gsx-admin
+Environment=ADMIN_GROUP=gsx-admin
+Environment=ENCRYPT_MODE=auto
+
+ExecStart=/usr/bin/bash /srv/gsx-admin/opt/04-backup-secrets.sh
+
+# Logs go to journald automatically; this sets a stable identifier
+SyslogIdentifier=gsx-backup
+
+# Lightweight hardening (avoid breaking tar/gpg behavior)
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

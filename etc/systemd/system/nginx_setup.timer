@@ -1,0 +1,11 @@
+[Unit]
+Description=Run GSX Week2 Custom Task every 5min
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Unit=nginx_setup.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

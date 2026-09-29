@@ -24,7 +24,7 @@ Clone the repo as the `gsx` user:
 sudo apt update
 sudo apt install -y git
 cd /home/gsx
-git clone https://github.com/davidcaran/gsx-admin.git
+git clone https://github.com/Ton-Llop/Debian-Config
 cd /home/gsx/gsx-admin
 ```
 
